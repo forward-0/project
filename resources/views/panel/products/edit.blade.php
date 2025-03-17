@@ -339,8 +339,13 @@
                 دسته بندی:<select name="category" class="mt-2 form-control">
                     @foreach ($categories as $category)
 
-
+                    @if ($category->category_id == $product->category_id)
+                    <option form-control value="{{$category->category_id}}" selected>{{$category->title}}</option>
+                    
+                    @else
+                    
                   <option form-control value="{{$category->category_id}}">{{$category->title}}</option>
+                  @endif
  @endforeach
 </select><br>
                 موجودی:<input value="{{ $product->product_qty }}" type="text"name="qty" class="mt-2 form-control"><br>

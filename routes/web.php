@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\categoryController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\productController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,8 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
+});
+Route::get('/sign', function () {
+    return view('sign');
 });
 Route::get('/index', function () {
     $products= DB::table('products')->get();
@@ -30,19 +33,11 @@ Route::get('/index', function () {
 
 
 //category panel
-Route::get('/panel/categories/index', function () {
-    $categories= DB::table('categories')->get();
-
-    return view('panel.categories.index',compact('categories'));
-});
-
-
-
-
-Route::post('/panel/categories/store', [categoryController::class,'store'])->name('category.store');
-Route::get('/panel/categories/delete/{id}', [categoryController::class,'delete'])->name('category.delete');
-Route::get('/panel/categories/edit/{id}', [categoryController::class,'edit'])->name('category.edit');
-Route::post('/panel/categories/update/{id}', [categoryController::class, 'update'])->name('category.update');
+Route::get('/panel/categories/index', [CategoryController::class, 'index']);
+Route::post('/panel/categories/store', [CategoryController::class,'store'])->name('category.store');
+Route::get('/panel/categories/edit/{category}', [categoryController::class,'edit'])->name('category.edit');
+Route::post('/panel/categories/update/{category}', [categoryController::class, 'update'])->name('category.update');
+Route::get('/panel/categories/delete/{category}', [categoryController::class,'delete'])->name('category.delete');
 
 //end
 

@@ -331,7 +331,7 @@
 
 
               <!-- Basic Modal -->
-               <form action="{{ route('category.update',['id'=>$category->category_id])}}" method="post" class="mt-2" enctype="multipart/form-data">
+               <form action="{{ route('category.update',$category->category_id)}}" method="post" class="mt-2" enctype="multipart/form-data">
                 @csrf
 
 
@@ -364,7 +364,7 @@
                           <tr>
                             <th scope="row">{{ $category->category_id }}</th>
                             <td>{{ $category->title }}</td>
-                            <td><img src="../../../{{ $category->image }}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
+                            <td><img src="{{asset('storage/'.$category->image) }}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
                             </td>
                           </tr>
 

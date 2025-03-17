@@ -48,26 +48,38 @@ class productController extends Controller
         }
         public function update(Request $request , $id){
             $request->validate([
-                "title_edit"=> "string",
-                "image_edit"=> "image"
+                "title"=> "string|required",
+            "product_detail"=> "string|required",
+            "category"=> "required|integer",
+            "qty"=> "required|integer",
+            "price"=> "required|integer",
+            
 
                 ]);
-                if($request->hasFile("image_edit")){
+                if($request->hasFile("image")){
                 $targetDir = "assets/img/";
-                $image = $request->file("image_edit");
+                $image = $request->file("image");
                 $image->move($targetDir, $image->getClientOriginalName());
                 $path =$targetDir.$image->getClientOriginalName();
 
-                DB::table("categories")->where('category_id' ,$id)->update([
-                    "title"=> $request->title_edit,
-                    "image"=> $path
+                DB::table("products")->where('product_id' ,$id)->update([
+                    "product_name"=> $request->title,
+            "product_detail"=> $request->product_detail,
+            "category_id"=> $request->category,
+            "product_qty"=> $request->qty,
+            "product_price"=> $request->price,
+            "product_image"=>$path
                     ]);
                 }else{
-                    DB::table("categories")->where('category_id' ,$id)->update([
-                        "title"=> $request->title_edit,
+                    DB::table("products")->where('product_id' ,$id)->update([
+                        "product_name"=> $request->title,
+            "product_detail"=> $request->product_detail,
+            "category_id"=> $request->category,
+            "product_qty"=> $request->qty,
+            "product_price"=> $request->price,
 
                         ]);
                         }
-                    return redirect('/panel/categories/index');
+                    return redirect('/panel/products/index');
         }
 }

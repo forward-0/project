@@ -382,9 +382,9 @@
 
                             <th scope="row">{{$category->category_id}}</th>
                             <td>{{$category->title}}</td>
-                            <td><img src="/{{$category->image}}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
+                            <td><img src="{{asset('storage/'.$category->image) }}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
                             </td>
-                            <td><a href="{{ route('category.edit',['id'=>$category->category_id]) }}"><i class="ri-edit-2-fill"></i> </a> &nbsp <a href="{{ route('category.delete',['id'=>$category->category_id]) }}"><i class="ri-delete-bin-4-fill"></i></a></td>
+                            <td><a href="{{ route('category.edit',$category->category_id) }}"><i class="ri-edit-2-fill"></i> </a> &nbsp <a href="{{ route('category.delete',$category->category_id) }}"><i class="ri-delete-bin-4-fill"></i></a></td>
 
  </tr>
                             @endforeach

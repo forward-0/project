@@ -30,7 +30,7 @@
                                 <a class="nav-link active" aria-current="page" href="index.php">صفحه اصلی</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="login.php"> ورود/ثبت نام</a>
+                                <a class="nav-link active" aria-current="page" href="/login"> ورود/ثبت نام</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="panel/index.php" target="_blank">مدیریت سایت</a>

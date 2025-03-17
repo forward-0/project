@@ -1,36 +1,41 @@
 <x-app-layout>
 <div class="d-flex justify-content-center align-items-center mt-5">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-ride="carousel" data-interval="3000" style="width: 800px; height: 400px; overflow: hidden;">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-interval="3000" style="width: 800px; height: 400px; overflow: hidden;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="assets/img/s.jfif" class="d-block w-100" alt="First slide">
+            <div class="carousel-item active" style="transition: transform 0.5s ease;">
+                <img src="assets/img/s.jfif" class="d-block w-100" alt="First slide" style="height: 400px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px;">
-                    <h5 style="font-size: 2rem;color: #28a745;">خوش آمدید به فروشگاه ما</h5>
+                    <h5 style="font-size: 2rem;color: #28a745; ">خوش آمدید به فروشگاه ما</h5>
                     <p style="font-size: 1.2rem; color: #28a745;">تجربه‌ای بی‌نظیر از خرید آنلاین را با ما داشته باشید!</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="assets/img/s1.jfif" class="d-block w-100" alt="Second slide">
+            <div class="carousel-item" style="transition: transform 0.5s ease;">
+                <img src="assets/img/s1.jfif" class="d-block w-100" alt="Second slide" style="height: 400px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px;">
                     <h5 style="font-size: 2rem;color: #28a745;">محصولات جدید ما</h5>
                     <p style="font-size: 1.2rem;color: #28a745;">همیشه جدیدترین و بهترین محصولات را بررسی کنید.</p>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="assets/img/s2.jfif" class="d-block w-100" alt="Third slide">
+            <div class="carousel-item" style="transition: transform 0.5s ease;">
+                <img src="assets/img/s2.jfif" class="d-block w-100" alt="Third slide" style="height: 400px; object-fit: cover;">
                 <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px;">
                     <h5 style="font-size: 2rem;color: #28a745;">تخفیف‌های ویژه</h5>
                     <p style="font-size: 1.2rem;color: #28a745;">از تخفیف‌های ویژه ما بهره‌مند شوید!</p>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-target="#carouselExampleDark" data-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">قبلی</span>
+            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-target="#carouselExampleDark" data-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">بعدی</span>
+            <span class="visually-hidden">Next</span>
         </button>
     </div>
 </div>

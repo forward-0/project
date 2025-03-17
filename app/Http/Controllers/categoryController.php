@@ -2,65 +2,88 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
-class categoryController extends Controller
+
+class CategoryController extends Controller
 {
+    public function index(){
+        $categories = Category::all();
+        
+        return view('panel.categories.index',compact('categories'));
+    }
+
     public function store(Request $request){
+
+
         $request->validate([
             "title"=> "string|required",
             "image"=>"required|image"
             ]);
-            $targetDir = "assets/img/";
-            $image = $request->file("image");
-            $image->move($targetDir, $image->getClientOriginalName());
-            $path =$targetDir.$image->getClientOriginalName();
 
-            DB::table("categories")->insert([
-                "title"=> $request->title,
-                "image"=> $path
-                ]);
+
+            
+            $image = $request->file("image");
+            $path =null;
+            
+
+            if ($request->hasFile('image')) {
+                $path = $request->file('image')->store('categories' , 'public');
+            }
+
+            Category::create([
+                'title' => $request->title, 
+                'image'=> $path
+            ]);
                 return redirect('/panel/categories/index');
     }
-    public function delete($id){
-
-            DB::table('categories')->where('category_id', $id)->delete();
-            return redirect('/panel/categories/index');
-
-
-            }
-            public function edit($id){
-                $category = DB::table('categories')->where('category_id', $id)->first();
+            public function edit(Category $category){
+                
                 return view('panel.categories.edit',compact('category'));
+                
             }
-            public function update(Request $request , $id){
+            public function update(Request $request ,Category $category ){
                 $request->validate([
+                    
                     "title_edit"=> "string",
                     "image_edit"=> "image"
 
                     ]);
-                    if($request->hasFile("image_edit")){
-                    $targetDir = "assets/img/";
-                    $image = $request->file("image_edit");
-                    $image->move($targetDir, $image->getClientOriginalName());
-                    $path =$targetDir.$image->getClientOriginalName();
 
-                    DB::table("categories")->where('category_id' ,$id)->update([
+
+                    
+                
+                $path =$category->image;
+            
+
+            if ($request->hasFile('image_edit')) {
+                $image = $request->file("image_edit");
+                if ($path) {
+                                    Storage::disk('public')->delete($path);
+
+                }
+                $path = $request->file('image_edit')->store('categories' , 'public');
+                     }
+            
+                    $category->update([
                         "title"=> $request->title_edit,
-                        "image"=> $path
+                        "image"=> $path,
                         ]);
-                    }else{
-                        DB::table("categories")->where('category_id' ,$id)->update([
-                            "title"=> $request->title_edit,
-
-                            ]);
-                            }
+                    
+                            
                         return redirect('/panel/categories/index');
             }
-            public function selectAll(){
-                $categories = DB::table('categories')->get();
+
+    public function delete(Category $category){
+        if ($category->image) {
+           Storage::disk('public')->delete($category->image);
+        }
+        $category->delete();
+        return redirect('/panel/categories/index');
                 
-                return view('index',compact('categories'));
-            }
+    } 
+        
 }
