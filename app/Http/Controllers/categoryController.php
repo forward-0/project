@@ -10,9 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $categories = Category::all();
-        
+        if (isset( $request->search)) {
+            $search= $request->search;
+            $categories= Category::where('title','LIKE',$search)->get();
+
+        }
+
+
         return view('panel.categories.index',compact('categories'));
     }
 
@@ -25,39 +31,39 @@ class CategoryController extends Controller
             ]);
 
 
-            
+
             $image = $request->file("image");
             $path =null;
-            
+
 
             if ($request->hasFile('image')) {
                 $path = $request->file('image')->store('categories' , 'public');
             }
 
             Category::create([
-                'title' => $request->title, 
+                'title' => $request->title,
                 'image'=> $path
             ]);
                 return redirect('/panel/categories/index');
     }
             public function edit(Category $category){
-                
+
                 return view('panel.categories.edit',compact('category'));
-                
+
             }
             public function update(Request $request ,Category $category ){
                 $request->validate([
-                    
+
                     "title_edit"=> "string",
                     "image_edit"=> "image"
 
                     ]);
 
 
-                    
-                
+
+
                 $path =$category->image;
-            
+
 
             if ($request->hasFile('image_edit')) {
                 $image = $request->file("image_edit");
@@ -67,13 +73,13 @@ class CategoryController extends Controller
                 }
                 $path = $request->file('image_edit')->store('categories' , 'public');
                      }
-            
+
                     $category->update([
                         "title"=> $request->title_edit,
                         "image"=> $path,
                         ]);
-                    
-                            
+
+
                         return redirect('/panel/categories/index');
             }
 
@@ -83,7 +89,7 @@ class CategoryController extends Controller
         }
         $category->delete();
         return redirect('/panel/categories/index');
-                
-    } 
-        
+
+    }
+
 }

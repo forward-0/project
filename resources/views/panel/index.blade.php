@@ -52,8 +52,8 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <form class="search-form d-flex align-items-center" method="POST" action="{{ route('product.index') }}">
+        <input type="text" name="search" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -275,21 +275,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="index">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="categories/index">
+        <a class="nav-link collapsed" href="/panel/categories/index">
           <i class="bi bi-question-circle"></i>
           <span>Categories</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="products/index.html">
+        <a class="nav-link collapsed" href="/panel/products/index">
           <i class="bi bi-question-circle"></i>
           <span>Products</span>
         </a>
@@ -638,7 +638,7 @@
                         <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
                         <td>$32</td>
                         <td class="fw-bold">
-                            
+
                         </td>
                         <td>$2,016</td>
                       </tr>

@@ -52,8 +52,8 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+      <form class="search-form d-flex align-items-center" method="get" action="{{ route('product.index') }}">
+        <input type="text" name="search" placeholder="Search" title="Enter search keyword">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
@@ -275,21 +275,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="../index.html">
+        <a class="nav-link " href="/panel/index">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="/panel/categories/index">
           <i class="bi bi-question-circle"></i>
           <span>Categories</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../products/index.html">
+        <a class="nav-link collapsed" href="/panel/products/index">
           <i class="bi bi-question-circle"></i>
           <span>Products</span>
         </a>
@@ -375,7 +375,7 @@
                        <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
+
                     <th scope="col">Name</th>
                     <th scope="col">category</th>
                     <th scope="col">qty</th>
@@ -391,22 +391,15 @@
 
 
 
-                            <th scope="row">{{$product->product_id}}</th>
+                           
                             <td>{{$product->product_name}}</td>
                             <td>
-                                @php
-                                  $categoriesArray = $categories->keyBy('category_id');
-
-                                @endphp
-                                {{
-
-                                $categoriesArray[$product->category_id]->title
-                                }}</td>
+                                {{ $product->Category->title}}</td>
                             <td>{{$product->product_qty}}</td>
                             <td>{{$product->product_price}}</td>
-                            <td><img src="/{{$product->product_image}}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
+                            <td><img src="{{asset('storage/'.$product->product_image) }}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
                             </td>
-                            <td><a href="{{ route('product.edit',['id'=>$product->product_id]) }}"><i class="ri-edit-2-fill"></i> </a> &nbsp <a href="{{ route('product.delete',['id'=>$product->product_id]) }}"><i class="ri-delete-bin-4-fill"></i></a></td>
+                            <td><a href="{{ route('product.edit',$product->product_id) }}"><i class="ri-edit-2-fill"></i> </a> &nbsp <a href="{{ route('product.delete',$product->product_id) }}"><i class="ri-delete-bin-4-fill"></i></a></td>
 
 
 

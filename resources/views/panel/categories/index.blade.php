@@ -52,11 +52,11 @@
     </div><!-- End Logo -->
 
     <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
+        <form class="search-form d-flex align-items-center" method="get" action="{{ route('category.index') }}">
+          <input type="text" name="search" placeholder="Search" title="Enter search keyword">
+          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+      </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -275,21 +275,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="../index.html">
+        <a class="nav-link " href="/panel/index">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link collapsed" href="/panel/categories/index">
           <i class="bi bi-question-circle"></i>
           <span>Categories</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="../products/index.html">
+        <a class="nav-link collapsed" href="/panel/products/index">
           <i class="bi bi-question-circle"></i>
           <span>Products</span>
         </a>
@@ -367,7 +367,7 @@
                        <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
+
                             <th scope="col">Name</th>
                             <th scope="col">image</th>
                             <th scope="col">option</th>
@@ -380,7 +380,7 @@
 
 
 
-                            <th scope="row">{{$category->category_id}}</th>
+                           
                             <td>{{$category->title}}</td>
                             <td><img src="{{asset('storage/'.$category->image) }}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">
                             </td>

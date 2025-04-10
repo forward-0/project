@@ -331,7 +331,7 @@
 
 
               <!-- Basic Modal -->
-               <form action="{{ route('product.update',['id'=>$product->product_id])}}" method="post" class="mt-2" enctype="multipart/form-data">
+               <form action="{{ route('product.update',$product->product_id)}}" method="post" class="mt-2" enctype="multipart/form-data">
 
                 @csrf
 
@@ -341,9 +341,9 @@
 
                     @if ($category->category_id == $product->category_id)
                     <option form-control value="{{$category->category_id}}" selected>{{$category->title}}</option>
-                    
+
                     @else
-                    
+
                   <option form-control value="{{$category->category_id}}">{{$category->title}}</option>
                   @endif
  @endforeach
@@ -387,14 +387,7 @@
                             <th scope="row">{{$product->product_id}}</th>
                             <td>{{$product->product_name}}</td>
                             <td>
-                                @php
-                                  $categoriesArray = $categories->keyBy('category_id');
-
-                                @endphp
-                                {{
-
-                                $categoriesArray[$product->category_id]->title
-                                }}</td>
+                                {{ $product->Category->title }}</td>
                             <td>{{$product->product_qty}}</td>
                             <td>{{$product->product_price}}</td>
                             <td><img src="/{{$product->product_image}}" class="card-img-top" alt="#" style="width: 100px; height: 50px; object-fit: cover;">

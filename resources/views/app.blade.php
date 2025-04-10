@@ -27,7 +27,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-right">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">صفحه اصلی</a>
+                                <a class="nav-link active" aria-current="page" href="/index">صفحه اصلی</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/login"> ورود/ثبت نام</a>
@@ -61,7 +61,7 @@
                                 <a class="nav-link active" aria-current="page" href="logout.php">خروج از حساب کاربری</a>
                             </li>
                         </ul>
-                        <form class="d-flex" action="index.php" role="search">
+                        <form class="d-flex" action="{{ route('home.index') }}" method="get" role="search">
                             <input class="form-control me-2" name="search" type="search" placeholder="جستجو" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">جستجو</button>
                         </form>

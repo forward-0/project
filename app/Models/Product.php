@@ -9,24 +9,30 @@ class Product extends Model
 {
     use HasFactory;
     protected $keyType='string';
-    protected $primaryKey ='produuct_id';
+    protected $primaryKey ='product_id';
     public $incrementing = false;
 
     public static function boot()   {
         parent ::boot();
         static::creating(function($model){
-            $model->category_id = str::uuid();
+            $model->product_id = str::uuid();
         });
     }
 
 
     protected $fillable = [
-        'title', 'image',
+        'product_name',
+        'product_qty',
+        'product_detail',
+        'product_price',
+        'product_image',
+        'category_id',
     ];
-
-    public function category() {
-        return $this->belongsTo(Category::class,'category_id', 'category_id');
+    public function Category()
+    {
+        return $this->belongsTo(Category::class,'category_id','category_id');
     }
 
-    
+
+
 }
