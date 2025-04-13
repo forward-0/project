@@ -9,7 +9,8 @@
                     <h4>ثبت نام</h4>
                 </div>
                 <div class="card-body" style="background-color: #222; border-radius: 0 0 15px 15px;">
-                    <form action="sign_action.php"method="post" class="mt-2">
+                    <form action="{{ route('sign.register') }}"method="post" class="mt-2">
+                        @csrf
                     <div class="mb-3">
                             <label for="newUsername" class="form-label text-light">نام و نام خانوادگی </label>
                             <input type="text" class="form-control"name="realname" id="newUsername" placeholder="نام و نام خانوادگی" required>

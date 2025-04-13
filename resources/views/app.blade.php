@@ -29,15 +29,27 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/index">صفحه اصلی</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/login"> ورود/ثبت نام</a>
+                            @if (Auth::check())
+                            @if (Auth::user()->type =='1')
+<li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="panel/index" target="_blank">مدیریت سایت</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="panel/index.php" target="_blank">مدیریت سایت</a>
-                            </li>
+
+                            @else
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="list_order.php">مدیریت سبد خرید</a>
                             </li>
+@endif
+
+
+                            @else
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/login"> ورود/ثبت نام</a>
+                            </li>
+
+
+                            @endif
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="index.php?search=" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     لیست محصولات
@@ -57,9 +69,12 @@
                             <li class="nav-item">
                                 <a class="nav-link disabled" tabindex="-1" aria-disabled="true">راهنمای سفارش</a>
                             </li>
+                            @if (Auth::check())
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="logout.php">خروج از حساب کاربری</a>
-                            </li>
+                                            <a class="nav-link active" aria-current="page" href="logout">خروج از حساب کاربری</a>
+                                </li>
+                            @endif
+
                         </ul>
                         <form class="d-flex" action="{{ route('home.index') }}" method="get" role="search">
                             <input class="form-control me-2" name="search" type="search" placeholder="جستجو" aria-label="Search">

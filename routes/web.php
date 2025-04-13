@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\productController;
@@ -27,12 +28,22 @@ Route::get('/sign', function () {
 
 
 
+//Auth
+Route::get('/login', [AuthController::class,'login']);
+Route::post('/login/register', [AuthController::class,'loginRegister'])->name('login.register');
+Route::get('/sign', [AuthController::class,'sign'])->name('sign.user');
+Route::get('/logout', [AuthController::class,'logout'])->name('logout.user');
+Route::post('/sign/register', [AuthController::class,'signRegister'])->name('sign.register');
+
+
+
+
 //home
 Route::get('/index', [HomeController::class,'index'])->name('home.index');
 Route::get('/index/{id}', [HomeController::class,'CategoryShow'])->name('home.show.category');
 
 
-
+Route::middleware('auth.custom')->group(function () {
 //panel
 Route::get('/panel/index', function ()  {
         return view('panel/index');
@@ -57,3 +68,4 @@ Route::post('/panel/products/store', [productController::class,'store'])->name('
 Route::get('/panel/products/delete/{product}', [productController::class,'delete'])->name('product.delete');
 Route::get('/panel/products/edit/{product}', [productController::class,'edit'])->name('product.edit');
 Route::post('/panel/products/update/{product}', [productController::class, 'update'])->name('product.update');
+});
