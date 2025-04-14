@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\productController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,11 @@ Route::post('/sign/register', [AuthController::class,'signRegister'])->name('sig
 Route::get('/index', [HomeController::class,'index'])->name('home.index');
 Route::get('/index/{id}', [HomeController::class,'CategoryShow'])->name('home.show.category');
 
+
+//store
+Route::get('/index/store/{product}', [StoreController::class,'storeView'])->name('store.view');
+
+Route::get('/index/product/{product}/store', [StoreController::class,'store'])->name('store');
 
 Route::middleware('auth.custom')->group(function () {
 //panel

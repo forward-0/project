@@ -78,7 +78,7 @@
                         <h5 class="card-title">قیمت: {{ $product->product_price }} تومان</h5>
                         <h6 class="card-title">موجودی: {{ $product->product_qty}}</h6>
                         <p class="card-text">{{ $product->product_detail}}</p>
-                        <a href="#" class="btn btn-primary">جزئیات</a>
+                        <a href="{{ route('store.view',[$product->product_id]) }}" class="btn btn-primary">جزئیات</a>
                     </div>
                 </div>
                 @endforeach

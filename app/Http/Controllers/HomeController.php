@@ -24,4 +24,5 @@ class HomeController extends Controller
         $categories= Category::all();
         return view('index',compact('products' ,'categories'));
     }
+    
 }
