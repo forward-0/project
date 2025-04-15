@@ -13,29 +13,43 @@ class StoreController extends Controller
 {
     public function storeView(Product $product)  {
 
-        
 
-        
+
+
         return view('product',compact('product' ));
     }
     public function store(Product $product)  {
-        $cart=null;
-        if (Cart::where('user_id',Auth::user()->user_id)->count()==0) {
+       $userId=Auth::user()->user_id;
 
-            $cart= Cart::create([
-                'user_id'=>Auth::user()->user_id
-            ]);
-            
-        }else{
-            $cart =Cart::where('user_id',Auth::user()->user_id);
-        }
-        if (Cart_Item::where(['product_id','cart_id'],[$product->product_id,$cart->cart_id])->count()==0) {
-            Cart_Item::create([
-                'cart_id'=>$cart->cart_id,
-                'product_id'=>$product->product_id,
-                'quantity'=>'0'
-            ]);
-        }
+       $cart = Cart::firstOrCreate(['user_id'=>$userId]);
+
+       $cartItem= Cart_Item::firstOrCreate(['cart_id'=>$cart->cart_id,'product_id'=>$product->product_id],
+       ['quantity'=>0]);
+
+       $cartItem->increment('quantity');
+       return redirect('order_list');
     }
-    
+    public function delete(Cart_Item $item)  {
+
+       if ($item->quantity >1) {
+        $item->decrement('quantity');
+       }else{
+        $item->delete();
+       }
+       return redirect('order_list');
+    }
+    public function ListOrder(Product $product)  {
+       $userId=Auth::user()->user_id;
+
+       $cart = Cart::where('user_id', $userId)->first();
+
+       if (!$cart) {
+           // سبد خرید وجود ندارد
+           return response()->json(['message' => 'شما سبد خریدی ندارید.']);
+       } else {
+           $listOrder = Cart_Item::where('cart_id',$cart->cart_id)->get();
+           return view('list-orders',compact('listOrder'));
+       }
+    }
+
 }

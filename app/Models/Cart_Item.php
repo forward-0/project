@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class Cart_Item extends Model
 {
     use HasFactory;
+    protected $table = 'cart_items';
     protected $keyType='string';
     protected $primaryKey ='item_id';
     public $incrementing = false;
@@ -22,4 +23,9 @@ class Cart_Item extends Model
     protected $fillable = [
         'item_id','cart_id','quantity','product_id'
     ];
+    public function product()
+    {
+        return $this->belongsTo(Product::class,
+    'product_id','product_id');
+    }
 }

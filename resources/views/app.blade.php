@@ -37,7 +37,7 @@
 
                             @else
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="list_order.php">مدیریت سبد خرید</a>
+                                <a class="nav-link active" aria-current="page" href="order_list">مدیریت سبد خرید</a>
                             </li>
 @endif
 

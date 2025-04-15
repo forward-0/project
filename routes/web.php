@@ -48,6 +48,13 @@ Route::get('/index/{id}', [HomeController::class,'CategoryShow'])->name('home.sh
 Route::get('/index/store/{product}', [StoreController::class,'storeView'])->name('store.view');
 
 Route::get('/index/product/{product}/store', [StoreController::class,'store'])->name('store');
+Route::get('/delete/{item}', [StoreController::class,'delete'])->name('delete');
+Route::get('/order_list', [StoreController::class,'ListOrder']);
+
+
+
+
+
 
 Route::middleware('auth.custom')->group(function () {
 //panel
